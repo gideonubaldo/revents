@@ -1,33 +1,56 @@
 import React, { Component } from 'react'
 import { Segment, Form, Button } from 'semantic-ui-react'
 
+const emptyEvent = {
+  title: '',
+  date: '',
+  city: '',
+  venue: '',
+  hostedBy: ''
+}
+
 class EventForm extends Component {
   state = {
-    event: {
-      title: '',
-      date: '',
-      city: '',
-      venue: '',
-      hostedBy: ''
+    event: emptyEvent
+  }
+
+  componentDidMount() {
+    console.log('this is componentDidMount in the Eventform')
+    if(this.props.selectedEvent !== null){
+      this.setState({
+        event: this.props.selectedEvent
+      })
     }
   }
-  
+
+  componentWillReceiveProps(nextProps){
+    console.log('this is componentWillReceiveProps in the Eventform')
+    console.log('current: ', this.props.selectedEvent)
+    console.log('next: ', nextProps)
+    if(nextProps.selectedEvent !== this.props.selectedEvent){
+      this.setState({
+        event: nextProps.selectedEvent || emptyEvent
+      })
+    }
+  }
+
   onFormSubmit = (evt) => {
     evt.preventDefault()
-    this.props.createEvent(this.state.event)
+    if(this.state.event.id){
+      this.props.updateEvent(this.state.event)
+    }else{//create event doesnt have an ID
+      this.props.createEvent(this.state.event)
+    }
+    console.log("this is onFormSubmit in the EventForm")
   }
   
   onInputChange = (evt) => {
-    const newEvent = this.state.event;
-       /* a new instance is made by doing this with all of the current state. now the evt contains name so for example
-        * it could have the 'title' for the variable evt.target.name (the one that gets passed to onChange which is the inInputchange method)
-        * ,which is then assigned with the variable evt.target.value. This instance, the title instance with value replaces the current state of the 
-        * Component of eventform
-        */
-       newEvent[evt.target.name] = evt.target.value
+    const newEvent = this.state.event
+    newEvent[evt.target.name] = evt.target.value
     this.setState({
       event: newEvent
     })
+    console.log("this is onInputChange in the EventForm")
   }
   
   render() {
