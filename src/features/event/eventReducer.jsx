@@ -55,12 +55,15 @@ const initialState = [
   
   
 export const createEvent = (state, payload) => {
+    console.log("this is createEvent from event Reducer")
     return [...state, Object.assign({}, payload.event)]
 }
 
 export const updateEvent = (state, payload) => {
+  console.log("this is createEvent from event Reducer")
+  console.log(payload.event.id)
     return [
-        ...state.filter(event => event.ud !== payload.event.id),
+        ...state.filter(event => event.id !== payload.event.id),
         Object.assign({}, payload.event)
     ]
 }
