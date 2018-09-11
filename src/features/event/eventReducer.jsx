@@ -60,7 +60,7 @@ export const createEvent = (state, payload) => {
 }
 
 export const updateEvent = (state, payload) => {
-  console.log("this is createEvent from event Reducer")
+  console.log("this is updateEvent from event Reducer")
   console.log(payload.event.id)
     return [
         ...state.filter(event => event.id !== payload.event.id),
