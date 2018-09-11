@@ -5,6 +5,7 @@ import cuid from "cuid";
 import { connect } from "react-redux";
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
+import TextArea from "../../../app/common/form/TextArea";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -32,7 +33,7 @@ const actions = {
 };
 
 class EventForm extends Component {
-  
+
   onFormSubmit = evt => {
     evt.preventDefault();
     if (this.state.event.id) {
@@ -72,7 +73,8 @@ class EventForm extends Component {
             <Field
               name='description'
               type='text'
-              component={TextInput}
+              rows={3}
+              component={TextArea}
               placeholder='Tell us about your event'
             />
             <Header sub color='teal' content='Event Location Details'/>
