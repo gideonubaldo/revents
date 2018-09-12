@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
 import Script from "react-load-script";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from "google-map-react";
 import { incrementCounter, decrementCounter } from "./testActions";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -18,7 +18,7 @@ const actions = {
   decrementCounter
 };
 
-const Marker = () => <Icon name='marker' size='big' color='red' />
+const Marker = () => <Icon name="marker" size="big" color="red" />;
 
 class TestComponent extends Component {
   static defaultProps = {
@@ -28,15 +28,15 @@ class TestComponent extends Component {
     },
     zoom: 11
   };
-  
+
   state = {
-    address: '',
-    scriptLoaded: false,
+    address: "",
+    scriptLoaded: false
   };
 
-  handleScriptLoad= () => {
-    this.setState({scriptLoaded: true})
-  }
+  handleScriptLoad = () => {
+    this.setState({ scriptLoaded: true });
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -69,23 +69,22 @@ class TestComponent extends Component {
         <br />
         <br />
         <form onSubmit={this.handleFormSubmit}>
-        {this.state.scriptLoaded &&
-          <PlacesAutocomplete inputProps={inputProps} />}
+          {this.state.scriptLoaded && (
+            <PlacesAutocomplete inputProps={inputProps} />
+          )}
           <button type="submit">Submit</button>
         </form>
-        <div style={{ height: '300px', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyAnxWjyWxIAmlZTKynyLxcAFjed45YQAb4' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <Marker
-            lat={59.955413}
-            lng={30.337844}
-            text={'Kreyser Avrora'}
-          />
-        </GoogleMapReact>
-      </div>
+        <div style={{ height: "300px", width: "100%" }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: 'AIzaSyAnxWjyWxIAmlZTKynyLxcAFjed45YQAb4'
+            }}
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}
+          >
+            <Marker lat={59.955413} lng={30.337844} text={"Kreyser Avrora"} />
+          </GoogleMapReact>
+        </div>
       </div>
     );
   }
