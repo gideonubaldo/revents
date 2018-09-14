@@ -2,12 +2,9 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "../reducers/rootReducer";
 import thunk from "redux-thunk";
-import {
-  reactReduxFirebase,
-  getFirebase
-} from "react-redux-firebase";
+import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import { reduxFirestore, getFirestore } from "redux-firestore";
-import firebase from '../config/firebase'
+import firebase from "../config/firebase";
 
 const rrfConfig = {
   userProfile: "users",
