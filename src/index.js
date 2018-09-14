@@ -22,7 +22,7 @@ let render = () => {
           <ScrollToTop>
               <ReduxToastr
                 position='bottom-right'
-                transitionIn='faidIn'
+                transitionIn='fadeIn'
                 transitionOut='fadeOut'
               />
             <App /> 
